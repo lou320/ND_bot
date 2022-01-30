@@ -27,11 +27,11 @@ public class Bot extends TelegramLongPollingBot{
         if(inputMessage[0].equals("/start")){
             sendMessage.setText("Hi! This is NDownloader this can sent you whole gallery of hentais.You just have to enter hentai gallery code.\n Here is some example codes:");
             SendPhoto sendPhoto = new SendPhoto();
-            sendPhoto.setPhoto(new InputFile(""));
+            sendPhoto.setPhoto(new InputFile("https://raw.githubusercontent.com/lou320/ND_bot/main/src/main/java/image.jpg"));
             sendPhoto.setChatId(chatId);
             try {
-                execute(sendPhoto);
                 execute(sendMessage);
+                execute(sendPhoto);
             } catch (TelegramApiException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
