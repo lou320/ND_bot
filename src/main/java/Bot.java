@@ -1,3 +1,4 @@
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import org.jsoup.HttpStatusException;
@@ -6,6 +7,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.File;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
@@ -23,8 +25,12 @@ public class Bot extends TelegramLongPollingBot{
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         if(inputMessage[0].equals("/start")){
-            sendMessage.setText("Hi! This is NDownloader this can sent you whole gallery of hentais.You just have to enter hentai gallery code.");
+            sendMessage.setText("Hi! This is NDownloader this can sent you whole gallery of hentais.You just have to enter hentai gallery code.\n Here is some example codes:");
+            SendPhoto sendPhoto = new SendPhoto();
+            sendPhoto.setPhoto(new InputFile(""));
+            sendPhoto.setChatId(chatId);
             try {
+                execute(sendPhoto);
                 execute(sendMessage);
             } catch (TelegramApiException e) {
                 // TODO Auto-generated catch block
@@ -44,6 +50,10 @@ public class Bot extends TelegramLongPollingBot{
         else{
             checkStrOrInt(inputMessage[0], chatId);
         }
+    }
+
+    private String InputFile(String string) {
+        return null;
     }
 
     // method to check if user input is code or string. if input is a string this will show error message to user
